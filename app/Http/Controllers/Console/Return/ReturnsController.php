@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Console\Return;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AmazonReturn;
+use App\Models\Order;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\DataTables;
 use Milon\Barcode\Facades\DNS1DFacade as DNS1D;
 
@@ -81,15 +84,90 @@ class ReturnsController extends Controller
         ]);
 
         $return = AmazonReturn::findOrFail($request->id);
-        
+
+        // 1. Mark the return as received immediately
         $return->update([
             'received' => true,
             'notes' => $request->input('notes'),
         ]);
 
+        $assignedOrder = null;
+
+        // 2. Attempt to assign to an eligible awaiting_shipment order.
+        // Wrapped in try-catch so any unexpected error during order assignment
+        // will never revert or fail the received status of the return.
+        try {
+            $trimmedSku = trim((string) $return->sku);
+            $trimmedName = trim((string) $return->item_name);
+            $trimmedMat = trim((string) $return->material_type);
+
+            $hasSku = ($trimmedSku !== '');
+            $hasNameAndMat = ($trimmedName !== '' && $trimmedMat !== '');
+
+            // Loophole guard: Only attempt matching if we have at least a valid SKU
+            // or a valid (Make/Model + Material Type). Otherwise, skip to prevent
+            // matching arbitrary unrelated orders.
+            if ($hasSku || $hasNameAndMat) {
+                DB::transaction(function () use ($return, $trimmedSku, $trimmedName, $trimmedMat, $hasSku, $hasNameAndMat, &$assignedOrder) {
+                    // Lock the return row to prevent race conditions from concurrent clicks
+                    $lockedReturn = AmazonReturn::lockForUpdate()->find($return->id);
+                    if (! $lockedReturn || $lockedReturn->relatedOrder()->exists()) {
+                        return;
+                    }
+
+                    // Find candidate order that:
+                    // - Status is awaiting_shipment
+                    // - Not assigned to any return or prestock yet
+                    // - Not in any cutting batch yet
+                    // - Matches by SKU or (Make/Model + Material)
+                    // - Oldest unassigned order first (FIFO)
+                    $matchingOrder = Order::query()
+                        ->whereRaw("TRIM(status) = 'awaiting_shipment'")
+                        ->whereNull('amazon_return_id')
+                        ->whereNull('prestock_id')
+                        ->whereDoesntHave('batchOrders')
+                        ->where(function ($query) use ($trimmedSku, $trimmedName, $trimmedMat, $hasSku, $hasNameAndMat) {
+                            if ($hasSku && $hasNameAndMat) {
+                                $query->where('sku', $trimmedSku)
+                                    ->orWhere(function ($q) use ($trimmedName, $trimmedMat) {
+                                        $q->whereRaw('LOWER(TRIM(make_model)) = ?', [mb_strtolower($trimmedName)])
+                                          ->whereRaw('LOWER(TRIM(material_type)) = ?', [mb_strtolower($trimmedMat)]);
+                                    });
+                            } elseif ($hasSku) {
+                                $query->where('sku', $trimmedSku);
+                            } elseif ($hasNameAndMat) {
+                                $query->whereRaw('LOWER(TRIM(make_model)) = ?', [mb_strtolower($trimmedName)])
+                                      ->whereRaw('LOWER(TRIM(material_type)) = ?', [mb_strtolower($trimmedMat)]);
+                            }
+                        })
+                        ->orderBy('id', 'asc')
+                        ->lockForUpdate()
+                        ->first();
+
+                    if ($matchingOrder) {
+                        $matchingOrder->update([
+                            'amazon_return_id' => $return->id,
+                        ]);
+                        $assignedOrder = $matchingOrder;
+                    }
+                });
+            }
+        } catch (\Throwable $e) {
+            Log::error('Error assigning order on return markAsReceived: ' . $e->getMessage(), [
+                'return_id' => $return->id,
+                'error' => $e->getMessage(),
+            ]);
+        }
+
+        $message = $assignedOrder
+            ? "Return marked as received and assigned to Order #{$assignedOrder->order_number}."
+            : 'Return marked as received successfully.';
+
         return response()->json([
             'success' => true,
-            'message' => 'Return marked as received successfully.',
+            'message' => $message,
+            'assigned_order_id' => $assignedOrder?->id,
+            'assigned_order_number' => $assignedOrder?->order_number,
             'return_data' => [
                 'item_name' => $return->item_name,
                 'tracking' => $return->tracking,
@@ -108,10 +186,19 @@ class ReturnsController extends Controller
 
         $return = AmazonReturn::findOrFail($request->id);
         
-        $return->update([
-            'received' => false,
-            'notes' => null,
-        ]);
+        DB::transaction(function () use ($return) {
+            // Unlink any unfulfilled order attached to this return (preserving historical shipped records)
+            Order::where('amazon_return_id', $return->id)
+                ->where('status', '!=', 'shipped')
+                ->update([
+                    'amazon_return_id' => null,
+                ]);
+
+            $return->update([
+                'received' => false,
+                'notes' => null,
+            ]);
+        });
 
         return response()->json([
             'success' => true,
