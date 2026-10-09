@@ -1,0 +1,20 @@
+[15-Aug-2025 06:05:44 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/gocarmats/public_html/database/seeders/RolesAndPermissionsSeeder.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/seeders/RolesAndPermissionsSeeder.php on line 10
+[15-Aug-2025 06:45:39 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/gocarmats/public_html/database/seeders/DatabaseSeeder.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/seeders/DatabaseSeeder.php on line 9
+[15-Aug-2025 08:23:23 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/gocarmats/public_html/database/seeders/DatabaseSeeder.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/seeders/DatabaseSeeder.php on line 9
+[15-Aug-2025 08:23:25 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/gocarmats/public_html/database/seeders/RolesAndPermissionsSeeder.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/seeders/RolesAndPermissionsSeeder.php on line 10
+[15-Aug-2025 08:23:26 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home/gocarmats/public_html/database/seeders/UserSeeder.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/seeders/UserSeeder.php on line 8

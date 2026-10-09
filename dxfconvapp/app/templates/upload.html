@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload DXF File</title>
+</head>
+<body>
+    <h2>Upload DXF File</h2>
+    <form action="{{ base_url }}/convert/" enctype="multipart/form-data" method="post">
+        <input name="file" type="file" accept=".dxf" required>
+        <input type="submit" value="Upload and Convert">
+    </form>
+</body>
+</html>

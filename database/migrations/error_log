@@ -1,0 +1,128 @@
+[15-Aug-2025 05:11:25 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/0001_01_01_000000_create_users_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/0001_01_01_000000_create_users_table.php on line 7
+[15-Aug-2025 05:11:26 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_08_13_153412_add_additional_data_to_orders_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_08_13_153412_add_additional_data_to_orders_table.php on line 7
+[15-Aug-2025 05:11:30 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_04_22_110050_create_batches_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_04_22_110050_create_batches_table.php on line 7
+[15-Aug-2025 05:11:40 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_07_31_213751_add_status_to_batches_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_07_31_213751_add_status_to_batches_table.php on line 7
+[15-Aug-2025 05:12:12 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_04_15_104014_create_design_files_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_04_15_104014_create_design_files_table.php on line 7
+[15-Aug-2025 05:13:14 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_06_18_101550_create_permission_tables.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_06_18_101550_create_permission_tables.php on line 7
+[15-Aug-2025 05:14:17 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_08_13_151844_add_make_model_to_orders_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_08_13_151844_add_make_model_to_orders_table.php on line 7
+[15-Aug-2025 05:15:23 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_07_31_200418_add_material_type_to_orders_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_07_31_200418_add_material_type_to_orders_table.php on line 7
+[15-Aug-2025 05:16:26 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_07_31_202211_add_unique_constraint_to_orders_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_07_31_202211_add_unique_constraint_to_orders_table.php on line 7
+[15-Aug-2025 05:17:28 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_07_31_204417_add_color_column_to_orders_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_07_31_204417_add_color_column_to_orders_table.php on line 7
+[15-Aug-2025 05:19:37 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/0001_01_01_000001_create_cache_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/0001_01_01_000001_create_cache_table.php on line 7
+[15-Aug-2025 05:20:35 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_04_29_101003_create_batch_designs_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_04_29_101003_create_batch_designs_table.php on line 7
+[15-Aug-2025 05:21:36 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_06_23_114134_create_files_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_06_23_114134_create_files_table.php on line 7
+[15-Aug-2025 05:22:37 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_04_22_111840_create_batch_orders_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_04_22_111840_create_batch_orders_table.php on line 7
+[15-Aug-2025 05:23:40 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/0001_01_01_000002_create_jobs_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/0001_01_01_000002_create_jobs_table.php on line 7
+[15-Aug-2025 05:24:44 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_08_01_223246_add_unique_constraint_to_product_settings_table.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_08_01_223246_add_unique_constraint_to_product_settings_table.php on line 8
+[15-Aug-2025 05:26:51 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_06_23_115054_create_product_settings_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_06_23_115054_create_product_settings_table.php on line 7
+[15-Aug-2025 05:30:40 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_04_15_134600_create_orders_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_04_15_134600_create_orders_table.php on line 7
+[15-Aug-2025 08:23:11 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/0001_01_01_000001_create_cache_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/0001_01_01_000001_create_cache_table.php on line 7
+[15-Aug-2025 08:23:13 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/0001_01_01_000002_create_jobs_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/0001_01_01_000002_create_jobs_table.php on line 7
+[15-Aug-2025 08:23:14 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_04_15_104014_create_design_files_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_04_15_104014_create_design_files_table.php on line 7
+[15-Aug-2025 08:23:16 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_04_15_134600_create_orders_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_04_15_134600_create_orders_table.php on line 7
+[15-Aug-2025 08:23:17 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_04_22_110050_create_batches_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_04_22_110050_create_batches_table.php on line 7
+[15-Aug-2025 08:23:19 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_04_22_111840_create_batch_orders_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_04_22_111840_create_batch_orders_table.php on line 7
+[15-Aug-2025 08:23:20 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_04_29_101003_create_batch_designs_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_04_29_101003_create_batch_designs_table.php on line 7
+[15-Aug-2025 09:55:48 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/0001_01_01_000000_create_users_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/0001_01_01_000000_create_users_table.php on line 7
+[15-Aug-2025 09:55:50 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_06_18_101550_create_permission_tables.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_06_18_101550_create_permission_tables.php on line 7
+[15-Aug-2025 09:55:51 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_07_31_204417_add_color_column_to_orders_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_07_31_204417_add_color_column_to_orders_table.php on line 7
+[15-Aug-2025 09:55:53 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_07_31_213751_add_status_to_batches_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_07_31_213751_add_status_to_batches_table.php on line 7
+[15-Aug-2025 09:55:55 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_08_01_223246_add_unique_constraint_to_product_settings_table.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_08_01_223246_add_unique_constraint_to_product_settings_table.php on line 8
+[15-Aug-2025 09:55:56 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_08_13_151844_add_make_model_to_orders_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_08_13_151844_add_make_model_to_orders_table.php on line 7
+[15-Aug-2025 09:55:58 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Migrations\Migration" not found in /home/gocarmats/public_html/database/migrations/2025_08_13_153412_add_additional_data_to_orders_table.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/database/migrations/2025_08_13_153412_add_additional_data_to_orders_table.php on line 7

@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+ezdxf
+matplotlib
+python-multipart
+jinja2
+python-dotenv
+pydantic-settings

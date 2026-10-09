@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batch DXF Merge & Convert</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .upload-area {
+            border: 3px dashed #667eea;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            background: #f8f9ff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .upload-area:hover {
+            border-color: #764ba2;
+            background: #f0f2ff;
+        }
+        
+        .upload-area.dragover {
+            border-color: #764ba2;
+            background: #e8ebff;
+            transform: scale(1.02);
+        }
+        
+        .upload-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .upload-text {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .upload-hint {
+            color: #999;
+            font-size: 13px;
+        }
+        
+        input[type="file"] {
+            display: none;
+        }
+        
+        .file-list {
+            margin-bottom: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .file-item {
+            background: #f8f9ff;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .file-name {
+            color: #333;
+            font-size: 14px;
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .remove-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 10px;
+            transition: background 0.3s;
+        }
+        
+        .remove-btn:hover {
+            background: #ff3838;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+        }
+        
+        .btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            margin-top: 10px;
+        }
+        
+        .btn-secondary:hover:not(:disabled) {
+            box-shadow: 0 10px 25px rgba(108, 117, 125, 0.4);
+        }
+        
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .result.success {
+            background: #d4edda;
+            border: 2px solid #28a745;
+        }
+        
+        .result.error {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+        }
+        
+        .result-message {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .result.success .result-message {
+            color: #155724;
+        }
+        
+        .result.error .result-message {
+            color: #721c24;
+        }
+        
+        .result-image {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .nav-links {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .nav-links a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 14px;
+            margin: 0 10px;
+        }
+        
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔀 Batch DXF Merge & Convert</h1>
+        <p class="subtitle">Upload multiple DXF files to merge them into one and convert to image</p>
+        
+        <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">📁</div>
+            <div class="upload-text">Click to browse or drag & drop DXF files</div>
+            <div class="upload-hint">Select multiple .dxf files</div>
+            <input type="file" id="fileInput" accept=".dxf" multiple>
+        </div>
+        
+        <div class="file-list" id="fileList"></div>
+        
+        <button class="btn" id="uploadBtn" disabled>
+            Merge & Convert <span id="fileCount"></span>
+        </button>
+        
+        <button class="btn btn-secondary" id="clearBtn" disabled>
+            Clear All Files
+        </button>
+        
+        <div id="loading" class="hidden">
+            <div class="loader"></div>
+            <p style="text-align: center; color: #666;">Processing files...</p>
+        </div>
+        
+        <div id="result" class="hidden"></div>
+        
+        <div class="nav-links">
+            <a href="{{ base_url }}/upload">Single File Upload</a> | 
+            <a href="{{ base_url }}/batch-upload">Batch Upload</a>
+        </div>
+    </div>
+
+    <script>
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const fileCount = document.getElementById('fileCount');
+        const loading = document.getElementById('loading');
+        const result = document.getElementById('result');
+        
+        let selectedFiles = [];
+
+        // Click to browse
+        uploadArea.addEventListener('click', () => fileInput.click());
+
+        // File selection
+        fileInput.addEventListener('change', (e) => {
+            addFiles(Array.from(e.target.files));
+            fileInput.value = ''; // Reset input
+        });
+
+        // Drag & drop
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = Array.from(e.dataTransfer.files).filter(f => f.name.toLowerCase().endsWith('.dxf'));
+            addFiles(files);
+        });
+
+        function addFiles(files) {
+            files.forEach(file => {
+                if (!selectedFiles.some(f => f.name === file.name)) {
+                    selectedFiles.push(file);
+                }
+            });
+            updateFileList();
+        }
+
+        function removeFile(index) {
+            selectedFiles.splice(index, 1);
+            updateFileList();
+        }
+
+        function updateFileList() {
+            fileList.innerHTML = '';
+            
+            selectedFiles.forEach((file, index) => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.innerHTML = `
+                    <span class="file-name">${file.name}</span>
+                    <button class="remove-btn" onclick="removeFile(${index})">Remove</button>
+                `;
+                fileList.appendChild(fileItem);
+            });
+
+            const count = selectedFiles.length;
+            uploadBtn.disabled = count === 0;
+            clearBtn.disabled = count === 0;
+            fileCount.textContent = count > 0 ? `(${count} file${count > 1 ? 's' : ''})` : '';
+        }
+
+        clearBtn.addEventListener('click', () => {
+            selectedFiles = [];
+            updateFileList();
+            result.classList.add('hidden');
+        });
+
+        uploadBtn.addEventListener('click', async () => {
+            if (selectedFiles.length === 0) return;
+
+            const formData = new FormData();
+            selectedFiles.forEach(file => {
+                formData.append('files', file);
+            });
+
+            loading.classList.remove('hidden');
+            result.classList.add('hidden');
+            uploadBtn.disabled = true;
+            clearBtn.disabled = true;
+
+            try {
+                const response = await fetch('{{ base_url }}/convert-batch', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                loading.classList.add('hidden');
+                result.classList.remove('hidden');
+
+                if (data.success) {
+                    result.className = 'result success';
+                    result.innerHTML = `
+                        <div class="result-message">✅ ${data.message}</div>
+                        <div>Files merged: ${data.files_count}</div>
+                        <img src="${data.image_url}" alt="Merged DXF" class="result-image">
+                        <div style="margin-top: 15px;">
+                            <a href="${data.image_url}" download style="color: #28a745; text-decoration: none; margin-right: 15px;">📥 Download Image</a>
+                            <a href="${data.merged_dxf_url}" download style="color: #28a745; text-decoration: none;">📥 Download Merged DXF</a>
+                        </div>
+                    `;
+                } else {
+                    result.className = 'result error';
+                    result.innerHTML = `
+                        <div class="result-message">❌ Error</div>
+                        <div>${data.error}</div>
+                    `;
+                }
+            } catch (error) {
+                loading.classList.add('hidden');
+                result.classList.remove('hidden');
+                result.className = 'result error';
+                result.innerHTML = `
+                    <div class="result-message">❌ Upload Failed</div>
+                    <div>${error.message}</div>
+                `;
+            } finally {
+                uploadBtn.disabled = false;
+                clearBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
+

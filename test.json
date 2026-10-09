@@ -1,0 +1,106 @@
+ [ 
+  "id" => 1117234478
+  "updated_at" => "2026-04-15T14:12:39.877Z"
+  "created_at" => "2026-04-15T14:12:39.811Z"
+  "allocation_id" => 1136959627
+  "carrier_id" => 33
+  "charges" => array:3 [
+    0 => array:3 [
+      "name" => "BASE_RATE"
+      "value" => 0.01
+      "currency_code" => "GBP"
+    ]
+    1 => array:3 [
+      "name" => "VAT"
+      "value" => 0.0
+      "currency_code" => "GBP"
+    ]
+    2 => array:3 [
+      "name" => "DELIVERY_CONFIRMATION"
+      "value" => 0.0
+      "currency_code" => "GBP"
+    ]
+  ]
+  "shipped_by_id" => 539897
+  "parcel_format" => null
+  "postal_class" => null
+  "weight" => 1000.0
+  "collection_manifest_id" => null
+  "carrier_service_id" => null
+  "service_type" => "amazon_shipping_v2-aa979883-81c8-407b-ad0a-f59655d64501"
+  "service_name" => "Evri Next Day - Account Linked"
+  "short_service_name" => "Evri Next Day - Account Linked"
+  "service_carrier_name" => "hermes_uk"
+  "sub_carrier_id" => "HERMES_UK"
+  "packaging_type" => null
+  "drop_off_type" => null
+  "insured_value" => 0.0
+  "notify_customer" => false
+  "update_remote_order" => null
+  "delivery_confirmation_number" => null
+  "tracking_url" => "https://track.aftership.com/buy-shipping/T01FFA0396941060"
+  "outbound_shipment_date" => null
+  "label_url" => "/shipping/labels?shipment_ids%5B%5D=1117234478"
+  "commercial_invoice_url" => null
+  "aftership_url" => "https://track.aftership.com/buy-shipping/T01FFA0396941060"
+  "tracking_number" => array:28 [
+    "tracking_number" => "T01FFA0396941060"
+    "cancelled" => false
+    "used" => false
+    "carrier_service_id" => null
+    "billed" => false
+    "shipment_id" => 1117234478
+    "tracking_number_range_id" => null
+    "created_at" => "2026-04-15T14:12:39.845Z"
+    "updated_at" => "2026-04-15T14:12:39.845Z"
+    "user_trackable" => true
+    "awaiting_collection_at" => null
+    "awaiting_drop_off_at" => null
+    "collected_at" => null
+    "delivered_at" => null
+    "delivered_to_secure_location_at" => null
+    "in_clearance_at" => null
+    "in_transit_at" => null
+    "out_for_delivery_at" => null
+    "attempted_delivery_at" => null
+    "collect_from_depot_at" => null
+    "notified_recipient_at" => null
+    "delayed_at" => null
+    "cancelled_at" => null
+    "contact_support_at" => null
+    "recipient_refused_at" => null
+    "returned_to_sender_at" => null
+    "status" => "created"
+    "id" => 1764366312
+  ]
+  "outbound_label_charges" => array:2 [
+    "unit" => "GBP"
+    "value" => 0.01
+  ]
+  "order_id" => 1605212560
+  "carrier" => array:13 [
+    "id" => 33
+    "created_at" => "2022-05-10T09:20:24.056Z"
+    "updated_at" => "2023-03-16T09:38:43.263Z"
+    "provider_type" => "amazon_shipping_v2"
+    "slug" => "buy-shipping"
+    "name" => "Buy Shipping"
+    "is_configured?" => true
+    "is_integrated?" => true
+    "show_when_shipping?" => true
+    "inbound_supported" => true
+    "requires_reconnect" => false
+    "shipping_service_options" => null
+    "using_dhl_parcel_rest_api" => false
+  ]
+  "carrier_service" => null
+  "carrier_country" => null
+  "carrier_fees" => []
+  "carrier_fee" => null
+  "shipped_by" => array:3 [
+    "id" => 539897
+    "login" => "Naveed umer"
+    "email" => "navch55@yahoo.com"
+  ]
+  "has_return_label" => false
+]

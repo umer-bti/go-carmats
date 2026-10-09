@@ -1,0 +1,8 @@
+[15-Aug-2025 05:46:52 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/gocarmats/public_html/app/Providers/AuthServiceProvider.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/app/Providers/AuthServiceProvider.php on line 8
+[15-Aug-2025 09:35:29 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Support\ServiceProvider" not found in /home/gocarmats/public_html/app/Providers/AppServiceProvider.php:7
+Stack trace:
+#0 {main}
+  thrown in /home/gocarmats/public_html/app/Providers/AppServiceProvider.php on line 7
